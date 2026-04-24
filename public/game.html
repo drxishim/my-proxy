@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First Web Game</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            background-color: #282c34;
+            color: white;
+            margin-top: 50px;
+        }
+        #coin {
+            width: 100px;
+            height: 100px;
+            background-color: gold;
+            border-radius: 50%; /* Makes it a circle */
+            margin: 30px auto;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            transition: transform 0.1s;
+        }
+        #coin:active {
+            transform: scale(0.9); /* Shrinks slightly when clicked */
+        }
+        h1 { font-size: 3rem; }
+    </style>
+</head>
+<body>
+
+    <h1>Score: <span id="scoreText">0</span></h1>
+    <p>Click the gold coin to earn points!</p>
+
+    <div id="coin" onclick="clickCoin()"></div>
+
+    <script>
+        // This is the JavaScript that controls the game logic
+        let score = 0;
+
+        function clickCoin() {
+            score = score + 1; // Add 1 to the score
+            document.getElementById('scoreText').innerText = score; // Update the screen
+            
+            // Fun bonus: Move the coin slightly to a random position after 10 points
+            if (score > 10) {
+                let randomX = Math.floor(Math.random() * 40) - 20;
+                document.getElementById('coin').style.transform = `translateX(${randomX}px)`;
+            }
+        }
+    </script>
+
+</body>
+</html>
